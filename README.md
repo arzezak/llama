@@ -1,2 +1,3 @@
 # llama
-Neovim plugin to interact with Ollama
+
+A Neovim plugin to interact with Ollama.
