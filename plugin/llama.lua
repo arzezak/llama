@@ -1,9 +1,12 @@
 vim.api.nvim_create_user_command("Llama", function(options)
-  local start_line = options.line1
-  local end_line = options.line2
-  local prompt = options.args
-  local answer = require("llama").ask(prompt)
+  local range = options.range ~= 0
+  local start_line = range and options.line1 or 1
+  local end_line = range and options.line2 or vim.api.nvim_buf_line_count(0)
+  local content = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+  local buffer_content = table.concat(content, "\n")
+  local prompt = { options.args, buffer_content }
+  local question = table.concat(prompt, "\n")
+  local answer = require("llama").ask(question)
 
-  print(start_line, end_line)
-  print(answer)
+  require("floaty").open(answer)
 end, { range = true })

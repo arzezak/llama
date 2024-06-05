@@ -15,7 +15,7 @@ end
 
 llama.post = function(prompt)
   return curl.post("http://localhost:11434/api/generate", {
-    body = vim.fn.json_encode({
+    body = vim.json.encode({
       model = "llama3",
       prompt = prompt,
       stream = false,
