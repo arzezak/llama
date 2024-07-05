@@ -5,7 +5,13 @@ A Neovim plugin to interact with Ollama.
 ## Installation
 
 ```lua
-{ "arzezak/llama", dependencies = "arzezak/floaty" }
+return {
+  "arzezak/llama",
+  dependencies = "arzezak/floaty",
+  opts = {
+    model = "gemma2",
+  },
+}
 ```
 
 ## Usage
